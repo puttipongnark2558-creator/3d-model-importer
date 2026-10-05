@@ -1,0 +1,19 @@
+name: Build Geode Mod
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build with Geode CLI
+        uses: geode-sdk/build-action@v2
+        with:
+          geode-sdk: v4.0.0
