@@ -11,8 +11,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Win64, Android32, Android64]
-    runs-on: ubuntu-latest
+        config:
+        - name: Windows
+          os: windows-latest
+          target: Win64
+        - name: Android 32-bit
+          os: ubuntu-latest
+          target: Android32
+        - name: Android 64-bit
+          os: ubuntu-latest
+          target: Android64
+
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
 
     steps:
       - name: Checkout Repository
@@ -22,10 +33,12 @@ jobs:
         id: build
         uses: geode-sdk/build-geode-mod@main
         with:
-          target: ${{ matrix.target }}
+          bindings: geode-sdk/bindings
+          bindings-ref: main
+          target: ${{ matrix.config.target }}
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: geode-mod-${{ matrix.target }}
+          name: geode-mod-${{ matrix.config.target }}
           path: ${{ steps.build.outputs.build-output }}
