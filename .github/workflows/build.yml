@@ -23,3 +23,5 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           target: ${{ matrix.target }}
+          sdk: latest
+          cli: latest

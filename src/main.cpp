@@ -4,7 +4,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <cmath>
 
 using namespace geode::prelude;
 
@@ -86,9 +85,11 @@ void importModelToGD() {
 
         CCPoint spawnPos = { cameraPos.x + (isoX * scale), cameraPos.y + (isoY * scale) };
         auto obj = GameObject::createWithKey(1754);
-        obj->setPosition(spawnPos);
-        editor->addObject(obj, false);
-        objectsPlaced++;
+        if (obj) {
+            obj->setPosition(spawnPos);
+            editor->addObject(obj, false);
+            objectsPlaced++;
+        }
     }
 
     FLAlertLayer::create("Success!", fmt::format("Imported {} optimization dots into level.", objectsPlaced), "OK")->show();
