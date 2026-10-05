@@ -8,10 +8,24 @@ on:
 
 jobs:
   build:
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [Win64, Android32, Android64]
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Build with Geode SDK
+        id: build
         uses: geode-sdk/build-geode-mod@main
+        with:
+          target: ${{ matrix.target }}
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: geode-mod-${{ matrix.target }}
+          path: ${{ steps.build.outputs.build-output }}
