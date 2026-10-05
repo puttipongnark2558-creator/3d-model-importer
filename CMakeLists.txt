@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
-project(3d-model-importer LANGUAGES CXX C)
+project(3dmodelimporter VERSION 1.0.0)
 
 find_package(Geode REQUIRED)
+setup_geode_mod(${PROJECT_NAME})
 
-add_geode_mod(3d-model-importer
+target_sources(${PROJECT_NAME} PRIVATE
     src/main.cpp
 )
-
-target_link_libraries(3d-model-importer PRIVATE geode::geode)

@@ -29,16 +29,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build with Geode SDK
-        id: build
+      - name: Build Mod
         uses: geode-sdk/build-geode-mod@main
         with:
           bindings: geode-sdk/bindings
           bindings-ref: main
           target: ${{ matrix.config.target }}
-
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: geode-mod-${{ matrix.config.target }}
-          path: ${{ steps.build.outputs.build-output }}
