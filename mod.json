@@ -1,10 +1,14 @@
 {
-    "geode": "3.0.0",
+    "geode": "v3.0.0",
+    "gd": {
+        "win": "2.206",
+        "android": "2.206"
+    },
     "version": "1.0.0",
     "id": "puttipongnark2558.3dmodelimporter",
     "name": "3D Model Importer",
     "developer": "misterlope",
-    "description": "Imports 3D models from Blender into GD. Credits: coldsandgamer, toopter, coopertoodum.",
+    "description": "Imports 3D models from Blender into GD.",
     "repository": "https://github.com/puttipongnark2558-creator/3d-model-importer",
     "support": "puttipong.nark2558@gmail.com",
     "dependencies": []
