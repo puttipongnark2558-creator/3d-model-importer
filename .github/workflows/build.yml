@@ -11,27 +11,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config:
-        - name: Windows
-          os: windows-latest
-          target: Win64
-        - name: Android 32-bit
-          os: ubuntu-latest
-          target: Android32
-        - name: Android 64-bit
-          os: ubuntu-latest
-          target: Android64
-
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+        target: [Win64, Android32, Android64]
+    
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Mod
+      - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: geode-sdk/bindings
-          bindings-ref: main
-          target: ${{ matrix.config.target }}
+          target: ${{ matrix.target }}
