@@ -20,6 +20,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Geode Mod
-        uses: geode-sdk/build-geode-mod@main
+        uses: geode-sdk/build-geode-mod@v2
         with:
           target: ${{ matrix.target }}
